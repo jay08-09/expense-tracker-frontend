@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    production: true,
+    // production: true,
 
     baseurl:'http://localhost:5000'
 }

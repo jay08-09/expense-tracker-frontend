@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Dashboard from './pages/dashboard/dashboard'
 import Protected from './guards/protected'
-import Login from './pages/auth/login'
+import LoginRegisterForm from './pages/auth/LoginRegisterForm'
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
 
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<LoginRegisterForm />} />
       </Routes>
     </BrowserRouter>
   )
