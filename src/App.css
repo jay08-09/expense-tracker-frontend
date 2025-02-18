@@ -1,3 +1,5 @@
-#root {
-  
+@import "tailwindcss";
+
+* {
+  font-family: "Inter", serif !important;
 }
