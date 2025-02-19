@@ -1,5 +1,4 @@
 import instance from './token-interceptor'
-import CreateToast from '../components/common/toast';
 
 export const AddUser = (inputdata) => {
     return instance.post(`/api/users`, inputdata)
@@ -23,7 +22,6 @@ export const LoggedOut = async (navigate) => {
     
     if (isAuthenticated) {
         sessionStorage.clear()
-        CreateToast('success','Logged out successfully')
         
         // window.location.href = '/login'
         navigate('/login')
