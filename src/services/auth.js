@@ -9,19 +9,11 @@ export const LoginMethod = (inputdata) => {
     return instance.post(`/api/auth/login`, inputdata);
 }
 
-export const isLoggedIn = async () => {
-    let isAuthenticated = false;
-    const authToken = sessionStorage.getItem("authToken")
-
-    isAuthenticated = !!authToken
-    return isAuthenticated
-}
-
 export const LoggedOut = async (navigate) => {
     const isAuthenticated = await isLoggedIn()
     
     if (isAuthenticated) {
-        sessionStorage.clear()
+        localStorage.clear()
         
         // window.location.href = '/login'
         navigate('/login')

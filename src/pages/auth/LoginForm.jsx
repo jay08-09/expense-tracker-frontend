@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import CommonAlert from '../../components/CommonAlert';
 import { LoginMethod } from '../../services/auth';
 
-const LoginRegisterForm = () => {
+const LoginForm = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -56,7 +56,7 @@ const LoginRegisterForm = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <CustomTextField
-            label="Email address"
+            label={<span>Email Address <span className='text-red-500'>*</span></span>}
             name="email"
             {...register('email', {
               required: 'Email is required',
@@ -69,7 +69,7 @@ const LoginRegisterForm = () => {
             helperText={errors?.email?.message}
           />
           <CustomTextField
-            label="Password"
+            label={<span>Password<span className='text-red-500'>*</span></span>}
             name="password"
             type='password'
             {...register('password', {
@@ -94,7 +94,7 @@ const LoginRegisterForm = () => {
 
         <p className="mt-10 text-center text-sm/6 text-gray-500">
           Not a member?{' '}
-          <NavLink className="font-semibold text-indigo-600 hover:text-indigo-500">
+          <NavLink to={'/register'} className="font-semibold text-indigo-dark hover:text-indigo-light">
             Sign up Now
           </NavLink>
         </p>
@@ -103,4 +103,4 @@ const LoginRegisterForm = () => {
   );
 };
 
-export default LoginRegisterForm;
+export default LoginForm;

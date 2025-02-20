@@ -3,3 +3,9 @@
 * {
   font-family: "Inter", serif !important;
 }
+
+@theme {
+  --color-indigo-dark: oklch(0.511 0.262 276.966); 
+  --color-indigo-light: oklch(0.585 0.233 277.117); 
+  --font-body: "Inter", serif;
+}

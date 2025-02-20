@@ -2,7 +2,8 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Dashboard from './pages/dashboard/dashboard'
 import Protected from './guards/protected'
-import LoginRegisterForm from './pages/auth/LoginRegisterForm'
+import LoginForm from './pages/auth/LoginForm'
+import RegisterForm from './pages/auth/RegisterForm'
 
 function App() {
 
@@ -13,7 +14,8 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
 
-        <Route path='/login' element={<LoginRegisterForm />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/register' element={<RegisterForm />} />
       </Routes>
     </BrowserRouter>
   )

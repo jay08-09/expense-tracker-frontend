@@ -30,14 +30,14 @@ export default function CustomTextField(props) {
                         borderRadius: "8px",
                         marginTop: '6px',
                         "& fieldset": {
-                            borderColor: props?.error ? "red" : isFocused ? "blue" : "rgba(0, 0, 0, 0.23)", // Error -> Red, Focus -> Blue, Default -> Gray
+                            borderColor: props?.error ? "red" : isFocused ? "var(--color-indigo-dark)" : "rgba(0, 0, 0, 0.23)", // Error -> Red, Focus -> Blue, Default -> Gray
                         },
                         "&:hover fieldset": {
-                            borderColor: props?.error ? "red" : isFocused ? "blue" : "rgba(0, 0, 0, 0.5)", // Hover effect
+                            borderColor: props?.error ? "red" : isFocused ? "var(--color-indigo-dark)" : "rgba(0, 0, 0, 0.5)", // Hover effect
                         },
                         "&.Mui-focused fieldset": {
                             borderWidth: "2px",
-                            borderColor: props?.error ? "red" : "blue", // Keep red if error, otherwise blue on focus
+                            borderColor: props?.error ? "red" : "var(--color-indigo-dark)", // Keep red if error, otherwise blue on focus
                         },
                     },
                 }}
