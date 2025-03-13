@@ -11,12 +11,12 @@ const Sidebar = () => {
     const [isDarkMode, setIsDarkMode] = useState(false)
 
     const menuItems = [
-        { text: 'Dashboard', icon: <Components.Icons.LayoutDashboard size={20} color={`${isDarkMode ? "#94a3b8" : "var(--color-indigo-dark)"}`} />, path: '' },
-        { text: 'Expenses', icon: <Components.Icons.IndianRupee size={20} color={`${isDarkMode ? "#94a3b8" : "var(--color-indigo-dark)"}`} />, path: '/projects' },
-        { text: 'Incomes', icon: <Components.Icons.BadgeIndianRupee size={20} color={`${isDarkMode ? "#94a3b8" : "var(--color-indigo-dark)"}`} />, path: '' },
-        { text: 'Savings', icon: <Components.Icons.PiggyBank size={20} color={`${isDarkMode ? "#94a3b8" : "var(--color-indigo-dark)"}`} />, path: '/users' },
+        { text: 'Dashboard', icon: <Components.Icons.LayoutDashboard size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '' },
+        { text: 'Incomes', icon: <Components.Icons.BadgeIndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/income' },
+        { text: 'Expenses', icon: <Components.Icons.IndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/projects' },
+        { text: 'Savings', icon: <Components.Icons.PiggyBank size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/users' },
         // { text: 'Teams', icon: <Components.Icons.UsersRound size={20} color={`${isDarkMode ? "#94a3b8" : "#E67E22"}`} />, path: '' },
-        { text: 'Investments', icon: <Components.Icons.ReceiptIndianRupee size={20} color={`${isDarkMode ? "#94a3b8" : 'var(--color-indigo-dark)'}`} />, path: '' },
+        { text: 'Investments', icon: <Components.Icons.ReceiptIndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : 'gray'}`} />, path: '' },
     ];
 
     const [isOpen, setIsOpen] = useState(true);
@@ -73,7 +73,7 @@ const Sidebar = () => {
                                         <Components.ListItemIcon className={`${isOpen ? '' : 'my-1'}`}>
                                             {item.icon}
                                         </Components.ListItemIcon>
-                                        <Components.ListItemText primary={item.text} className={`${isOpen ? 'block' : 'hidden'}`} />
+                                        <Components.ListItemText primary={item.text} className={`${isOpen ? 'block ' : 'hidden'}`} />
                                     </Components.ListItem>
                                 </NavLink>
                             </Components.Tooltip>
@@ -91,7 +91,7 @@ const Sidebar = () => {
                                 </Components.ListItem>
                             </Components.Tooltip>
 
-                            <Components.Tooltip title={`${!isDarkMode ? 'Dark' : 'Light'} Mode`} placement='right' arrow>
+                            {/* <Components.Tooltip title={`${!isDarkMode ? 'Dark' : 'Light'} Mode`} placement='right' arrow>
                                 <Components.ListItem onClick={handleDarkMode}>
                                     <Components.ListItemIcon>
                                         {
@@ -105,7 +105,7 @@ const Sidebar = () => {
                                     </Components.ListItemIcon>
                                     <Components.ListItemText primary={`${!isDarkMode ? 'Dark' : 'Light'} Mode`} className={`${isOpen ? 'visible' : 'invisible'}`} />
                                 </Components.ListItem>
-                            </Components.Tooltip>
+                            </Components.Tooltip> */}
                         </Components.List>
                     </div>
 

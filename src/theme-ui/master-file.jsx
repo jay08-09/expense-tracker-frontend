@@ -39,20 +39,22 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import {ThemeProvider} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { Autocomplete, InputAdornment, Tooltip } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import * as Icons from 'lucide-react';
 import Box from "@mui/material/Box";
-import useMediaQuery from '@mui/material/useMediaQuery'; 
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/system';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { DataGrid } from '@mui/x-data-grid/'
 
 // Export them as named exports
 const Components = {
   Tabs,
   Tab,
+  DataGrid,
   Autocomplete,
   Button,
   Tooltip,

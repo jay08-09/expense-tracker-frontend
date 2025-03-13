@@ -13,12 +13,12 @@ const ConfirmBox = (props) => {
                     <Components.DialogContentText >{props.text}</Components.DialogContentText>
                 </Components.DialogContent>
 
-                <Components.DialogActions>
-                    <Components.Button onClick={props.onClose} variant="outlined">
+                <Components.DialogActions className="m-3">
+                    <Components.Button size="small" onClick={props.onClose} variant="outlined">
                         No, cancel
                     </Components.Button>
                     <Components.Button
-
+                        size="small"
                         onClick={() => { props.onConfirm(); props.onClose() }}
                         color="error" variant="contained"
                     >

@@ -84,7 +84,7 @@ const LoginForm = () => {
           />
 
           <div>
-            <CustomButton type='submit'>Sign in</CustomButton>
+            <CustomButton type='submit' className='w-100'>Sign in</CustomButton>
           </div>
         </form>
         <div className='mt-4'>

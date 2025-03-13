@@ -2,7 +2,7 @@ import Components from "../theme-ui/master-file";
 const CustomButton = Components.styled(Components.Button)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
-  width: "100%",
+  // width: "100%",
   borderRadius: "0.375rem" /* rounded-md */,
   backgroundColor: "var(--color-indigo-dark)"/* bg-indigo-600 */,
   padding: "0.375rem 0.75rem" /* px-3 py-1.5 */,

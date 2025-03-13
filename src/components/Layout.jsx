@@ -7,11 +7,11 @@ const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar isOpen={isSidebarOpen} />
-      <div className="flex-1">
+      <div className="flex flex-col flex-1 h-full overflow-hidden">
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
-        <main className="p-4">
+        <main className="p-4 flex-1 overflow-auto  ">
           <Outlet />
         </main>
       </div>
