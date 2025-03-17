@@ -40,7 +40,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { ThemeProvider } from '@mui/material/styles';
-import { Autocomplete, InputAdornment, Tooltip } from "@mui/material";
+import { Autocomplete, FormHelperText, InputAdornment, Tooltip } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import * as Icons from 'lucide-react';
 import Box from "@mui/material/Box";
@@ -54,6 +54,7 @@ import { DataGrid } from '@mui/x-data-grid/'
 const Components = {
   Tabs,
   Tab,
+  FormHelperText,
   DataGrid,
   Autocomplete,
   Button,

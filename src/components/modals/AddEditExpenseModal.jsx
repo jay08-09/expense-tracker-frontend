@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import Components from '../../theme-ui/master-file'
 import IconButton from '../IconButton'
-import CustomButton from '../CustomButton'
-import { useForm } from 'react-hook-form'
 import CustomTextField from '../CustomTextfield'
-import { AddIncome, UpdateIncome } from '../../services/income'
 import CommonAlert from '../CommonAlert'
-import CreateToast from '../toast'
+import CustomButton from '../CustomButton'
+import CustomSelectBox from '../CustomSelectbox'
+import { AddExpense, UpdateExpense } from '../../services/expenses'
 
-const AddIncomesModal = (props) => {
+const AddEditExpenseModal = (props) => {
+
+    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            category: '',
+            amount: 0,
+            date: null,
+            paymentMethod: "",
+            notes: '',
+        }
+    })
+
     const [alert, setAlert] = useState({
         message: "",
         status: "success", // "error" | "warning" | "info"
@@ -19,22 +30,12 @@ const AddIncomesModal = (props) => {
         reset()
     }
 
-    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
-        defaultValues: {
-            source: '',
-            amount: 0,
-            date: null,
-            notes: '',
-        }
-    })
 
     const onSubmit = async (data) => {
         if (Boolean(props?.data)) {
             try {
-                const response = await UpdateIncome(props?.data?._id, data);
-                if (response?.status === 200) {
-                    CreateToast('success', 'Data updated successfully')
-                }
+                const response = await UpdateExpense(props?.data?._id, data);
+                CreateToast('success', 'Data updated successfully')
                 reset()
                 handleClose()
             } catch (error) {
@@ -43,12 +44,9 @@ const AddIncomesModal = (props) => {
                 }
             }
         } else {
-
             try {
-                const response = await AddIncome(data);
-                if (response?.status === 201) {
-                    CreateToast('success', 'Data added successfully')
-                }
+                const response = await AddExpense(data);
+                CreateToast('success', 'Data added successfully')
                 reset()
                 handleClose()
             } catch (error) {
@@ -57,7 +55,6 @@ const AddIncomesModal = (props) => {
                 }
             }
         }
-
     }
 
     useEffect(() => {
@@ -71,23 +68,24 @@ const AddIncomesModal = (props) => {
         }
     }, [props?.open])
 
+
     return (
         <Components.Dialog open={props?.open} maxWidth='xs' fullWidth>
             <Components.DialogTitle className="flex justify-between items-center">
-                {Boolean(props?.data) ? 'Edit' : 'Add'} Income
+                {Boolean(props?.data) ? 'Edit' : 'Add'} Expense
                 <IconButton icon={'X'} onClick={handleClose} />
             </Components.DialogTitle>
             <hr className='m-0 text-gray-500 opacity-30' />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Components.DialogContent>
                     <CustomTextField
-                        label={<span>Source<span className='text-red-500'>*</span></span>}
+                        label={<span>Category<span className='text-red-500'>*</span></span>}
                         name="text"
-                        {...register('source', {
-                            required: 'Source is required',
+                        {...register('category', {
+                            required: 'Category is required',
                         })}
-                        error={!!errors?.source}
-                        helperText={errors?.source?.message}
+                        error={!!errors?.category}
+                        helperText={errors?.category?.message}
                     />
                     <CustomTextField
                         label={<span>Amount<span className='text-red-500'>*</span></span>}
@@ -109,6 +107,20 @@ const AddIncomesModal = (props) => {
                         error={!!errors?.date}
                         helperText={errors?.date?.message}
                     />
+                    <CustomSelectBox
+                        label={<span>Payment Method <span className="text-red-500">*</span></span>}
+                        name="paymentMethod"
+                        {...register("paymentMethod", { required: "Payment Method is required" })}
+                        options={[
+                            { value: "Cash", label: "Cash" },
+                            { value: "Card", label: "Card" },
+                            { value: "UPI", label: "UPI" },
+                            { value: "Other", label: "Other" },
+                        ]}
+                        error={!!errors?.paymentMethod}
+                        errormessage={errors?.paymentMethod?.message}
+                    />
+
                     <CustomTextField
                         label={<span>notes</span>}
                         name="notes"
@@ -117,6 +129,7 @@ const AddIncomesModal = (props) => {
                         minRows={'3'}
                         maxRows={'5'}
                     />
+
                     <div className='mt-4'>
                         {/* Alert Component */}
                         <CommonAlert message={alert.message} status={alert.status} onClose={() => setAlert({ message: "", status: "success" })} />
@@ -135,4 +148,4 @@ const AddIncomesModal = (props) => {
     )
 }
 
-export default AddIncomesModal
+export default AddEditExpenseModal

@@ -5,6 +5,7 @@ import { getProfileDetails, LoggedOut } from '../services/auth'
 import CreateToast from './toast'
 import ConfirmBox from './confirm-box'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -16,18 +17,36 @@ const Header = () => {
         setShowPopover(!showPopover);
     };
 
-    const getProfile = () => {
-        getProfileDetails()
-            .then(response => {
-                setData(response.data?.user)
-            })
-            .catch(error => {
-                if (error?.response?.status === 404) {
-                    CreateToast('error', 'Profile not found')
-                } else {
-                    CreateToast('error', 'Internal server error')
-                }
-            });
+    const getProfile = async () => {
+        // getProfileDetails()
+        //     .then((response) => {
+        //         setData(response.data?.user)
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //         if (error?.response?.status === 404) {
+        //             CreateToast('error', 'Profile not found')
+        //         } else if (error?.response?.status === 500) {
+        //             CreateToast('error', 'Internal Server Error')
+        //         }
+        //     });
+        try {
+            const response = await getProfileDetails();
+            setData(response.data?.user);
+        } catch (error) {
+            if (axios.isCancel(error)) {
+                console.log("Request canceled:", error.message);
+                return; // Ignore canceled requests
+            }
+
+            if (error?.response?.status === 404) {
+                CreateToast('error', 'Profile not found');
+            } else if (error?.response?.status === 500) {
+                CreateToast('error', 'Internal Server Error');
+            } else {
+                CreateToast('error', 'Something went wrong');
+            }
+        }
     }
 
     const handleConfirm = () => {

@@ -10,9 +10,11 @@ const Income = () => {
   const [data, setData] = useState([])
   const [confirmation, setConfirmation] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
+  const [selectedData, setSelectedData] = useState(null)
 
   const handleClose = () => {
     setModalOpen(false)
+    setSelectedData(null)
     getData()
   }
 
@@ -58,13 +60,18 @@ const Income = () => {
     getData()
   }, [])
 
+  const handleEdit = (row) => {
+    setSelectedData(row)
+    setModalOpen(true)
+  }
+
   const columns = [
     {
       field: "action",
       headerName: "Action",
       renderCell: (params) => (
         <div>
-          <IconButton icon='Edit' onClick={() => { console.log('Edit', params.row) }} />&nbsp;&nbsp;
+          <IconButton icon='Edit' onClick={() => { handleEdit(params.row) }} />&nbsp;&nbsp;
           <IconButton icon='Trash' onClick={() => { handleDelete(params.row) }} />
         </div>
       )
@@ -98,8 +105,6 @@ const Income = () => {
 
   ];
 
-
-
   return (
     <div className="p-2">
       <div className="flex mb-4">
@@ -115,7 +120,7 @@ const Income = () => {
         />
       </div>
 
-      <AddIncomesModal open={ModalOpen} onClose={handleClose} />
+      <AddIncomesModal data={selectedData} open={ModalOpen} onClose={handleClose} />
       <ConfirmBox
         open={confirmation}
         title={'Record Deletion'}

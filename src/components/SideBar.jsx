@@ -13,7 +13,7 @@ const Sidebar = () => {
     const menuItems = [
         { text: 'Dashboard', icon: <Components.Icons.LayoutDashboard size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '' },
         { text: 'Incomes', icon: <Components.Icons.BadgeIndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/income' },
-        { text: 'Expenses', icon: <Components.Icons.IndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/projects' },
+        { text: 'Expenses', icon: <Components.Icons.IndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/expenses' },
         { text: 'Savings', icon: <Components.Icons.PiggyBank size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/users' },
         // { text: 'Teams', icon: <Components.Icons.UsersRound size={20} color={`${isDarkMode ? "#94a3b8" : "#E67E22"}`} />, path: '' },
         { text: 'Investments', icon: <Components.Icons.ReceiptIndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : 'gray'}`} />, path: '' },
