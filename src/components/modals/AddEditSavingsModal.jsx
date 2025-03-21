@@ -6,17 +6,17 @@ import CustomTextField from '../CustomTextfield'
 import CommonAlert from '../CommonAlert'
 import CustomButton from '../CustomButton'
 import CustomSelectBox from '../CustomSelectbox'
-import { AddExpense, UpdateExpense } from '../../services/expenses'
+import { AddSavings, UpdateSavings } from '../../services/savings'
 import CreateToast from '../toast'
 
-const AddEditExpenseModal = (props) => {
+const AddEditSavingsModal = (props) => {
 
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
         defaultValues: {
-            category: '',
+            goal: '',
             amount: 0,
-            date: null,
-            paymentMethod: "",
+            savedDate: null,
+            targetDate: null,
             notes: '',
         }
     })
@@ -31,11 +31,10 @@ const AddEditExpenseModal = (props) => {
         reset()
     }
 
-
     const onSubmit = async (data) => {
         if (Boolean(props?.data)) {
             try {
-                const response = await UpdateExpense(props?.data?._id, data);
+                const response = await UpdateSavings(props?.data?._id, data);
                 if (response?.status === 200) {
                     CreateToast('success', 'Data updated successfully')
                     reset()
@@ -48,7 +47,7 @@ const AddEditExpenseModal = (props) => {
             }
         } else {
             try {
-                const response = await AddExpense(data);
+                const response = await AddSavings(data);
                 if (response?.status === 201) {
                     CreateToast('success', 'Data added successfully')
                     reset()
@@ -66,31 +65,31 @@ const AddEditExpenseModal = (props) => {
         if (props?.open && Boolean(props?.data)) {
             reset(props?.data)
         } else {
-            setValue('source', '')
             setValue('amount', 0)
-            setValue('date', null)
+            setValue('goal', '')
+            setValue('targetDate', null)
+            setValue('savedDate', null)
             setValue('notes', '')
         }
     }, [props?.open])
 
-
     return (
         <Components.Dialog open={props?.open} maxWidth='xs' fullWidth>
             <Components.DialogTitle className="flex justify-between items-center">
-                {Boolean(props?.data) ? 'Edit' : 'Add'} Expense
+                {Boolean(props?.data) ? 'Edit' : 'Add'} Savings
                 <IconButton icon={'X'} onClick={handleClose} />
             </Components.DialogTitle>
             <hr className='m-0 text-gray-500 opacity-30' />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Components.DialogContent>
                     <CustomTextField
-                        label={<span>Category<span className='text-red-500'>*</span></span>}
+                        label={<span>Goal<span className='text-red-500'>*</span></span>}
                         name="text"
-                        {...register('category', {
-                            required: 'Category is required',
+                        {...register('goal', {
+                            required: 'Goal is required',
                         })}
-                        error={!!errors?.category}
-                        helperText={errors?.category?.message}
+                        error={!!errors?.goal}
+                        helperText={errors?.goal?.message}
                     />
                     <CustomTextField
                         label={<span>Amount<span className='text-red-500'>*</span></span>}
@@ -103,29 +102,25 @@ const AddEditExpenseModal = (props) => {
                         helperText={errors?.amount?.message}
                     />
                     <CustomTextField
-                        label={<span>Date<span className='text-red-500'>*</span></span>}
+                        label={<span>Saved Date<span className='text-red-500'>*</span></span>}
+                        type="date"
+                        name="savedDate"
+                        {...register('savedDate', {
+                            required: 'Saved Date is required'
+                        })}
+                        error={!!errors?.savedDate}
+                        helperText={errors?.savedDate?.message}
+                    />
+                    <CustomTextField
+                        label={<span>Target Date<span className='text-red-500'>*</span></span>}
                         type="date"
                         name="date"
-                        {...register('date', {
-                            required: 'date is required'
+                        {...register('targetDate', {
+                            required: 'Target Date is required'
                         })}
-                        error={!!errors?.date}
-                        helperText={errors?.date?.message}
+                        error={!!errors?.targetDate}
+                        helperText={errors?.targetDate?.message}
                     />
-                    <CustomSelectBox
-                        label={<span>Payment Method <span className="text-red-500">*</span></span>}
-                        name="paymentMethod"
-                        {...register("paymentMethod", { required: "Payment Method is required" })}
-                        options={[
-                            { value: "Cash", label: "Cash" },
-                            { value: "Card", label: "Card" },
-                            { value: "UPI", label: "UPI" },
-                            { value: "Other", label: "Other" },
-                        ]}
-                        error={!!errors?.paymentMethod}
-                        errormessage={errors?.paymentMethod?.message}
-                    />
-
                     <CustomTextField
                         label={<span>notes</span>}
                         name="notes"
@@ -153,4 +148,4 @@ const AddEditExpenseModal = (props) => {
     )
 }
 
-export default AddEditExpenseModal
+export default AddEditSavingsModal

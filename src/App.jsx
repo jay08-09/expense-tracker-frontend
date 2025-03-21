@@ -8,6 +8,7 @@ import RegisterForm from './pages/auth/RegisterForm'
 import Layout from './components/Layout'
 import Income from './pages/incomes/Income'
 import Expenses from './pages/expenses/Expenses';
+import Savings from './pages/savings/savings';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/income' element={<Income />} />
             <Route path='/expenses' element={<Expenses />} />
+            <Route path='/savings' element={<Savings />} />
           </Route>
         </Route>
 

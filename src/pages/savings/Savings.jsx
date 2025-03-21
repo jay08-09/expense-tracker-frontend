@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import IconButton from '../../components/IconButton'
 import Components from '../../theme-ui/master-file'
 import ConfirmBox from '../../components/confirm-box'
-import AddEditExpenseModal from '../../components/modals/AddEditExpenseModal'
-import { DeleteExpense, GetExpenses } from '../../services/expenses'
+import AddEditSavingsModal from '../../components/modals/AddEditSavingsModal'
+import { DeleteSavings, GetSavings } from '../../services/savings'
 import moment from 'moment'
+import CreateToast from '../../components/toast'
 
-const Expenses = () => {
+const Savings = () => {
+
     const [ModalOpen, setModalOpen] = useState(false)
     const [data, setData] = useState([])
     const [confirmation, setConfirmation] = useState(false)
@@ -22,7 +24,7 @@ const Expenses = () => {
     //get data from get api
     const getData = async () => {
         try {
-            const response = await GetExpenses()
+            const response = await GetSavings()
             setData(response.data)
         } catch (error) {
             if (error?.response?.status === 500) {
@@ -33,11 +35,11 @@ const Expenses = () => {
 
     const handleConfirm = async () => {
         try {
-            const response = await DeleteExpense(selectedId)
+            const response = await DeleteSavings(selectedId)
             // console.log(response.status === 200)
             if (response.status === 200) {
                 CreateToast('success', 'Data deleted successfully')
-                setData(data.filter(expense => expense._id !== selectedId))
+                setData(data.filter(savings => savings._id !== selectedId))
             }
             setSelectedId(null)
         } catch (error) {
@@ -78,17 +80,20 @@ const Expenses = () => {
             )
         },
         {
-            field: "date",
-            headerName: "Date",
+            field: "targetDate",
+            headerName: "Target Date",
             width: 150,
             renderCell: (params) => (
                 <span >{moment(params?.value)?.format('DD/MM/YYYY')}</span> // Show date in human readable format
             )
         },
         {
-            field: "category",
-            headerName: "Category",
-            width: 100,
+            field: "savedDate",
+            headerName: "Saved Date",
+            width: 150,
+            renderCell: (params) => (
+                <span >{moment(params?.value)?.format('DD/MM/YYYY')}</span> // Show date in human readable format
+            )
         },
         {
             field: "amount",
@@ -97,10 +102,9 @@ const Expenses = () => {
             type: "number",
         },
         {
-            field: "paymentMethod",
-            headerName: "Payment Method",
-            width: 150,
-            type: "text",
+            field: "goal",
+            headerName: "Goal",
+            width: 100,
         },
         {
             field: "notes",
@@ -108,6 +112,7 @@ const Expenses = () => {
             width: 300,
             renderCell: (params) => <span title={params.value}>{params.value}</span>, // Show full note on hover
         },
+
 
     ];
 
@@ -126,7 +131,7 @@ const Expenses = () => {
                 />
             </div>
 
-            <AddEditExpenseModal data={selectedData} open={ModalOpen} onClose={handleClose} />
+            <AddEditSavingsModal data={selectedData} open={ModalOpen} onClose={handleClose} />
             <ConfirmBox
                 open={confirmation}
                 title={'Record Deletion'}
@@ -138,4 +143,4 @@ const Expenses = () => {
     )
 }
 
-export default Expenses
+export default Savings

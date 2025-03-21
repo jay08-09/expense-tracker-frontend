@@ -5,6 +5,7 @@ import { DeleteIncome, GetIncomes } from '../../services/income';
 import CreateToast from '../../components/toast';
 import Components from '../../theme-ui/master-file';
 import ConfirmBox from '../../components/confirm-box';
+import moment from 'moment/moment';
 const Income = () => {
   const [ModalOpen, setModalOpen] = useState(false)
   const [data, setData] = useState([])
@@ -81,9 +82,8 @@ const Income = () => {
       headerName: "Date",
       width: 150,
       renderCell: (params) => (
-        <span >{new Date(params.value).toLocaleDateString()}</span> // Show date in human readable format
+        <span >{moment(params?.value)?.format('DD/MM/YYYY')}</span> // Show date in human readable format
       )
-      // valueGetter: (params) => new Date(params.row.date).toLocaleDateString(),
     },
     {
       field: "source",
