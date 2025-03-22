@@ -16,7 +16,7 @@ const Sidebar = () => {
         { text: 'Expenses', icon: <Components.Icons.IndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/expenses' },
         { text: 'Savings', icon: <Components.Icons.PiggyBank size={18} color={`${isDarkMode ? "#94a3b8" : "gray"}`} />, path: '/savings' },
         // { text: 'Teams', icon: <Components.Icons.UsersRound size={20} color={`${isDarkMode ? "#94a3b8" : "#E67E22"}`} />, path: '' },
-        { text: 'Investments', icon: <Components.Icons.ReceiptIndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : 'gray'}`} />, path: '' },
+        { text: 'Investments', icon: <Components.Icons.ReceiptIndianRupee size={18} color={`${isDarkMode ? "#94a3b8" : 'gray'}`} />, path: '/investments' },
     ];
 
     const [isOpen, setIsOpen] = useState(true);
@@ -51,7 +51,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className={`flex ${isOpen ? 'w-auto' : 'w-auto'} shadow-md  transition-width duration-300 shadow-indigo-500/50 text-black h-screen`}>
+            <div className={`flex ${isOpen ? 'w-auto' : 'w-auto'} shadow-md   transition-width duration-300 shadow-indigo-500/50 text-black h-screen`}>
                 <Components.Box
                     className={`h-screen bg-white  flex flex-col  text-gray-400 transition-width duration-300  ${isOpen ? 'w-50' : 'w-12.5'}`}
                     style={{ width: isOpen ? '200px' : '50px', }}

@@ -49,9 +49,13 @@ import { styled } from '@mui/system';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { DataGrid } from '@mui/x-data-grid/'
-
+import { BarChart, PieChart, LineChart, axisClasses } from '@mui/x-charts';
 // Export them as named exports
 const Components = {
+  BarChart,
+  PieChart,
+  LineChart,
+  axisClasses,
   Tabs,
   Tab,
   FormHelperText,

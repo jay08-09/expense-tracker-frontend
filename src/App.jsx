@@ -9,6 +9,7 @@ import Layout from './components/Layout'
 import Income from './pages/incomes/Income'
 import Expenses from './pages/expenses/Expenses';
 import Savings from './pages/savings/savings';
+import Investments from './pages/investments/Investments';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/income' element={<Income />} />
             <Route path='/expenses' element={<Expenses />} />
             <Route path='/savings' element={<Savings />} />
+            <Route path='/investments' element={<Investments />} />
           </Route>
         </Route>
 

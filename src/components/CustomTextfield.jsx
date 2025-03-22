@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import Components from '../theme-ui/master-file'
 
 export default function CustomTextField(props) {
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-
+    const IconAdornment = Components.Icons[props?.endadornmenticon]
     return (
         <div >
             <Components.FormLabel
@@ -44,12 +42,20 @@ export default function CustomTextField(props) {
                 slotProps={{
                     input: {
                         endAdornment:
-                            props?.type === "password" && (
+                            props?.type === "password" ? (
                                 <Components.InputAdornment position="end">
                                     <Components.IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
                                         {showPassword ? <Components.Icons.EyeOff size={20} /> : <Components.Icons.Eye size={20} />}
                                     </Components.IconButton>
                                 </Components.InputAdornment>
+                            ) : (
+                                IconAdornment ? (
+                                    <Components.InputAdornment position="end">
+                                        <IconAdornment size={20} />
+                                    </Components.InputAdornment>
+                                ) : (
+                                    ''
+                                )
                             ),
                     },
                 }}
